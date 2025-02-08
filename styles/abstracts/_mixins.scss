@@ -1,0 +1,27 @@
+@use 'variables' as *;
+
+@mixin theme-aware($property, $key) {
+  @each $theme, $colors in $themes {
+    .theme-#{$theme} & {
+      #{$property}: map-get(map-get($themes, $theme), $key);
+    }
+  }
+}
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Invalid breakpoint: #{$breakpoint}";
+  }
+}
+
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
