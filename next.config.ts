@@ -2,10 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   sassOptions: {
-    includePaths: ['./styles'],
-    additionalData: `@use 'abstracts' as *; @use 'core/utilities' as *;`, 
-  }
-
+    includePaths: ["./styles"],
+    additionalData: `@use 'abstracts' as *; @use 'core/utilities' as *;`,
+  },
+  images: {
+    remotePatterns: [
+      {
+        hostname: "image.tmdb.org",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

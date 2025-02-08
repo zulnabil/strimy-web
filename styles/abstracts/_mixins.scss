@@ -1,4 +1,5 @@
-@use 'variables' as *;
+@use "variables" as *;
+@use "sass:map";
 
 @mixin theme-aware($property, $key) {
   @each $theme, $colors in $themes {

@@ -2,6 +2,7 @@
   @include flex(column, center, center);
 
   position: fixed;
+  z-index: 10;
   color: map-get($themes, "dark", "text-primary");
   font-family: var(--font-geist-sans);
 
@@ -29,11 +30,12 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 240px;
+        width: 500px;
         height: 100%;
         background: linear-gradient(
           90deg,
-          rgba(0, 0, 0, 0.2) 0%,
+          rgba(0, 0, 0, 1) 0%,
+          rgba(0, 0, 0, 0.5) 70%,
           rgba(0, 0, 0, 0) 100%
         );
         pointer-events: none;

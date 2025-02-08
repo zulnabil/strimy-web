@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import "./styles/SideBar.scss";
-import { LINKS } from "~/app/common/constants/LINKS";
+import { LINKS } from "~/app/common/constants/link";
 import Image from "next/image";
 
 export default function SideBar() {
