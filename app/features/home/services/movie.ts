@@ -31,7 +31,7 @@ const transformSeriesData = (data: MovieResponse): TopRatedMovie[] =>
     backdrop: `${IMAGE_BASE_URL}/original${movie.backdrop_path}`,
     poster: `${IMAGE_BASE_URL}/original${movie.poster_path}`,
     genres: getSeriesGenreNames(movie.genre_ids),
-    year: movie.release_date ? new Date(movie.release_date).getFullYear() : 0,
+    year: new Date(movie.release_date || movie.first_air_date).getFullYear(),
     rating: movie.vote_average,
     language: movie.original_language.toUpperCase(),
   }));

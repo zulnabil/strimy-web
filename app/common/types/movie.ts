@@ -14,6 +14,7 @@ export type MovieRaw = {
   video: boolean; // Indicates if the movie has a video
   vote_average: number; // Average vote score
   vote_count: number; // Total number of votes
+  first_air_date: string;
 };
 
 export type MovieResponse = {

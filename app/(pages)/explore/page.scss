@@ -1,0 +1,12 @@
+.explore {
+  background-color: map.get($themes, "dark", "primary");
+  color: white;
+  min-height: 100svh;
+  padding: 1rem;
+  padding-bottom: 5rem;
+
+  @include respond-to("tablet") {
+    padding: 2rem;
+    padding-left: 96px;
+  }
+}
