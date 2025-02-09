@@ -1,4 +1,4 @@
-@use '../abstracts' as *;
+@use "../abstracts" as *;
 
 *,
 *::before,
@@ -9,18 +9,17 @@
   padding: 0;
 }
 
-
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @include theme-aware('background-color', 'primary');
-  @include theme-aware('color', 'text-primary');
+  @include theme-aware("background-color", "primary");
+  @include theme-aware("color", "text-primary");
 }
 
 img {
   max-width: 100%;
-  height: auto;
   display: block;
 }
 

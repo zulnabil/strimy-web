@@ -1,4 +1,4 @@
 .main {
-  background-color: map-get($themes, "dark", "primary");
+  background-color: map.get($themes, "dark", "primary");
   min-height: 100svh;
 }

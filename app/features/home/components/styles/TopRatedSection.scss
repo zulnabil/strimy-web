@@ -1,0 +1,33 @@
+.top-rated-section {
+  padding: 2rem;
+  padding-left: 96px;
+  padding-bottom: 0.5rem;
+
+  h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .carousel-container {
+    width: 100%;
+
+    .carousel {
+      max-width: 100%;
+      padding: 0.5rem;
+    }
+
+    .carousel-item {
+      opacity: 1;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &.active {
+        border: none;
+      }
+    }
+  }
+}

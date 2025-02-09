@@ -10,7 +10,7 @@ const { IMAGE_BASE_URL } = config;
 const transformMovieData = (data: MovieResponse): TopRatedMovie[] =>
   data.results.map((movie) => ({
     id: movie.id,
-    title: movie.title,
+    title: movie.title || movie.name,
     overview: movie.overview,
     backdrop: `${IMAGE_BASE_URL}/original${movie.backdrop_path}`,
     poster: `${IMAGE_BASE_URL}/original${movie.poster_path}`,
@@ -22,9 +22,20 @@ const transformMovieData = (data: MovieResponse): TopRatedMovie[] =>
 
 export const getTopRatedMovies = pipe(
   () => apiClient("/movie/top_rated"),
-  (data) => {
-    console.debug(data);
-    return data;
-  },
+  transformMovieData
+);
+
+export const getTopRatedSeries = pipe(
+  () => apiClient("/tv/top_rated"),
+  transformMovieData
+);
+
+export const getPopularMovies = pipe(
+  () => apiClient("/movie/popular"),
+  transformMovieData
+);
+
+export const getPopularSeries = pipe(
+  () => apiClient("/tv/popular"),
   transformMovieData
 );

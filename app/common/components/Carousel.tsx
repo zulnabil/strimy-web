@@ -11,6 +11,8 @@ interface CarouselProps<T> {
   getImageProps: (item: T) => {
     src: string;
     alt: string;
+    width?: number;
+    height?: number;
   };
   getId: (item: T) => number | string;
 }
@@ -41,7 +43,7 @@ export default function Carousel<T>({
 
   const scroll = (direction: "left" | "right") => {
     if (carouselRef.current) {
-      const scrollAmount = 660;
+      const scrollAmount = carouselRef.current.clientWidth;
       const newPosition =
         direction === "left"
           ? Math.max(0, scrollPosition - scrollAmount)
@@ -74,17 +76,17 @@ export default function Carousel<T>({
 
       <div className="carousel" ref={carouselRef}>
         {items.map((item) => {
-          const { src, alt } = getImageProps(item);
+          const { src, alt, width = 200, height = 112 } = getImageProps(item);
           const id = getId(item);
           return (
             <div
               key={id}
-              className={`carousel-item ${
+              className={`carousel-item w-${width} h-${height} ${
                 id === getId(selectedItem) ? "active" : ""
               }`}
               onClick={() => onItemSelect(item)}
             >
-              <Image src={src} alt={alt} width={200} height={112} />
+              <Image src={src} alt={alt} width={width} height={height} />
             </div>
           );
         })}

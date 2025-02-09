@@ -1,35 +1,40 @@
 "use client";
 
 import Image from "next/image";
-import { TopRatedMovie } from "../types/feature";
+import { TopRatedMovie } from "../../types/feature";
 import Carousel from "~/app/common/components/Carousel";
-import "./styles/Banner.scss";
+import "../styles/Banner.scss";
+import { useState } from "react";
 
 interface BannerProps {
-  movie: TopRatedMovie;
   movies: TopRatedMovie[];
-  onMovieSelect: (movie: TopRatedMovie) => void;
 }
 
-export default function Banner({ movie, movies, onMovieSelect }: BannerProps) {
+export default function Banner({ movies }: BannerProps) {
+  const [selectedMovie, setSelectedMovie] = useState(movies[0]);
   return (
     <div className="banner">
       <div className="banner__image">
-        <Image src={movie.backdrop} alt={movie.title} fill priority />
+        <Image
+          src={selectedMovie.backdrop}
+          alt={selectedMovie.title}
+          fill
+          priority
+        />
       </div>
 
-      <div className="banner__content pl-12">
+      <div className="banner__content">
         <div className="banner__info">
-          <h1>{movie.title}</h1>
+          <h1>{selectedMovie.title}</h1>
           <div className="banner__meta">
-            <span className="year">{movie.year}</span>
-            <span className="rating">{movie.rating}+</span>
+            <span className="year">{selectedMovie.year}</span>
+            <span className="rating">{selectedMovie.rating}+</span>
             <span className="season">1 Season</span>
-            <span className="language">{movie.language}</span>
+            <span className="language">{selectedMovie.language}</span>
           </div>
-          <p className="description">{movie.overview}</p>
+          <p className="description">{selectedMovie.overview}</p>
           <div className="banner__genres">
-            {movie.genres.map((genre) => (
+            {selectedMovie.genres.map((genre) => (
               <span key={genre} className="genre">
                 {genre}
               </span>
@@ -48,8 +53,8 @@ export default function Banner({ movie, movies, onMovieSelect }: BannerProps) {
       <div className="banner__carousel">
         <Carousel
           items={movies}
-          selectedItem={movie}
-          onItemSelect={onMovieSelect}
+          selectedItem={selectedMovie}
+          onItemSelect={setSelectedMovie}
           getImageProps={(movie) => ({
             src: movie.backdrop,
             alt: movie.title,

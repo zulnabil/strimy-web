@@ -85,6 +85,18 @@
   }
 }
 
+@for $i from 1 through 1000 {
+  .w-#{$i} {
+    width: #{$i}px;
+  }
+}
+
+@for $i from 1 through 1000 {
+  .h-#{$i} {
+    height: #{$i}px;
+  }
+}
+
 // Typography utilities
 @each $key, $value in $font-sizes {
   .text-#{$key} {

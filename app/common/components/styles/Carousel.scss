@@ -7,74 +7,64 @@ $card-width: 200px;
   gap: 1rem;
 
   .carousel-arrow {
+    @include flex(row, center, center);
+
     position: absolute;
     width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    height: calc(100% - 1rem);
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
     color: white;
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    font-size: 32px;
     cursor: pointer;
-    transition: all 0.3s ease;
     z-index: 3;
 
-    &:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
     &.left {
-      left: -20px;
+      left: 20px;
       transform: translateX(-50%);
     }
 
     &.right {
-      right: -20px;
+      right: 20px;
       transform: translateX(50%);
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.8) 100%
+      );
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.5);
     }
   }
 
   .carousel {
-    margin: 0 40px;
     display: flex;
     gap: 1rem;
     overflow: hidden;
     scroll-behavior: smooth;
-    max-width: calc($card-width * 3 + 2rem);
+    max-width: calc($card-width * 3 + 2.5rem);
     padding: 0.5rem;
 
     .carousel-item {
       flex-shrink: 0;
       position: relative;
-      width: $card-width;
-      height: 112px;
       border-radius: 8px;
       overflow: hidden;
       cursor: pointer;
       transition: all 0.3s ease;
-
-      opacity: 0.6;
-
-      &::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.4);
-        transition: all 0.3s ease;
-      }
+      opacity: 0.8;
 
       img {
         object-fit: cover;
       }
 
       &:hover {
-        opacity: 0.8;
+        opacity: 1;
         transform: scale(1.05);
       }
 

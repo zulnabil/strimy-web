@@ -3,7 +3,7 @@
 
   position: fixed;
   z-index: 10;
-  color: map-get($themes, "dark", "text-primary");
+  color: map.get($themes, "dark", "text-primary");
   font-family: var(--font-geist-sans);
 
   // Mobile styles (default)
@@ -69,7 +69,7 @@
         }
 
         a {
-          color: map-get($themes, "dark", "text-primary");
+          color: map.get($themes, "dark", "text-primary");
           text-decoration: none;
           display: block;
           width: 100%;

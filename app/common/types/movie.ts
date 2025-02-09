@@ -3,6 +3,7 @@ export type MovieRaw = {
   backdrop_path: string | null; // Can be null if no backdrop image exists
   genre_ids: number[]; // Array of genre IDs
   id: number; // Unique ID of the movie
+  name: string;
   original_language: string; // Original language (e.g., "en")
   original_title: string; // Original title of the movie
   overview: string; // Summary of the movie
