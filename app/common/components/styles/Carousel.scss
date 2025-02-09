@@ -4,36 +4,54 @@ $card-width: 200px;
   position: relative;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
+
+  @include respond-to("tablet") {
+    gap: 1rem;
+  }
 
   .carousel-arrow {
     @include flex(row, center, center);
     position: absolute;
-    width: 40px;
-    height: calc(100% - 1rem);
+    width: 32px;
+    height: calc(100% - 0.5rem);
     background: linear-gradient(
       90deg,
       rgba(0, 0, 0, 0.8) 0%,
       rgba(0, 0, 0, 0) 100%
     );
     color: white;
-    font-size: 32px;
+    font-size: 24px;
     cursor: pointer;
     z-index: 3;
 
+    @include respond-to("tablet") {
+      width: 40px;
+      height: calc(100% - 1rem);
+      font-size: 32px;
+    }
+
     &.left {
-      left: 20px;
+      left: 10px;
       transform: translateX(-50%);
+
+      @include respond-to("tablet") {
+        left: 20px;
+      }
     }
 
     &.right {
-      right: 20px;
+      right: 10px;
       transform: translateX(50%);
       background: linear-gradient(
         90deg,
         rgba(0, 0, 0, 0) 0%,
         rgba(0, 0, 0, 0.8) 100%
       );
+
+      @include respond-to("tablet") {
+        right: 20px;
+      }
     }
   }
 
@@ -45,27 +63,46 @@ $card-width: 200px;
 
   .carousel {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     overflow: hidden;
     scroll-behavior: smooth;
-    max-width: calc($card-width * 3 + 2.5rem);
-    padding: 0.5rem;
+    max-width: 100%;
+    padding: 0.25rem;
+
+    @include respond-to("tablet") {
+      gap: 1rem;
+      max-width: calc($card-width * 3 + 2.5rem);
+      padding: 0.5rem;
+    }
 
     .carousel-item {
       flex-shrink: 0;
       position: relative;
-      border-radius: 8px;
+      border-radius: 4px;
       overflow: hidden;
       cursor: pointer;
       transition: all 0.3s ease;
       opacity: 0.8;
+      width: calc($card-width * 0.8); // Smaller on mobile
+
+      @include respond-to("tablet") {
+        border-radius: 8px;
+        width: $card-width;
+      }
 
       img {
         object-fit: cover;
+        width: 100%;
+        height: auto;
       }
 
       &:hover {
         transform: scale(1.05);
+        opacity: 1;
+      }
+
+      &.active {
+        border: 2px solid white;
         opacity: 1;
       }
     }
