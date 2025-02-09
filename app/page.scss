@@ -1,4 +1,5 @@
 .main {
   background-color: map.get($themes, "dark", "primary");
   min-height: 100svh;
+  padding-bottom: 5rem;
 }

@@ -20,5 +20,27 @@ export const GENRE_MAP: Record<number, string> = {
   37: "Western",
 };
 
+export const SERIES_GENRE_MAP: Record<number, string> = {
+  10759: "Action & Adventure",
+  16: "Animation",
+  35: "Comedy",
+  80: "Crime",
+  99: "Documentary",
+  18: "Drama",
+  10751: "Family",
+  10762: "Kids",
+  9648: "Mystery",
+  10763: "News",
+  10764: "Reality",
+  10765: "Sci-Fi & Fantasy",
+  10766: "Soap",
+  10767: "Talk",
+  10768: "War & Politics",
+  37: "Western",
+};
+
 export const getGenreNames = (genreIds: number[]): string[] =>
   genreIds.map((id) => GENRE_MAP[id] || "Unknown");
+
+export const getSeriesGenreNames = (genreIds: number[]): string[] =>
+  genreIds.map((id) => SERIES_GENRE_MAP[id] || "Unknown");

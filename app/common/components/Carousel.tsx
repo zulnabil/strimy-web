@@ -3,18 +3,28 @@
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import "./styles/Carousel.scss";
+import { cn } from "~/app/common/lib/utils";
+import HoverCard from "./HoverCard";
+import { TopRatedMovie } from "~/app/features/home/types/feature";
 
 interface CarouselProps<T> {
   items: T[];
-  selectedItem: T;
   onItemSelect: (item: T) => void;
   getImageProps: (item: T) => {
     src: string;
     alt: string;
-    width?: number;
-    height?: number;
+    width: number;
+    height: number;
   };
+  getMeta?: (
+    item: T
+  ) => Pick<
+    TopRatedMovie,
+    "title" | "overview" | "year" | "rating" | "language"
+  >;
   getId: (item: T) => number | string;
+  selectedItem?: T;
+  showHoverContent?: boolean;
 }
 
 export default function Carousel<T>({
@@ -22,11 +32,23 @@ export default function Carousel<T>({
   selectedItem,
   onItemSelect,
   getImageProps,
+  getMeta,
   getId,
+  showHoverContent = false,
 }: CarouselProps<T>) {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [showArrows, setShowArrows] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [hoverState, setHoverState] = useState<{
+    isVisible: boolean;
+    item: T | null;
+    position: { x: number; y: number };
+  }>({
+    isVisible: false,
+    item: null,
+    position: { x: 0, y: 0 },
+  });
+  const timeoutRef = useRef<NodeJS.Timeout>(null);
 
   useEffect(() => {
     const checkOverflow = () => {
@@ -66,6 +88,28 @@ export default function Carousel<T>({
       carouselRef.current.scrollWidth - carouselRef.current.clientWidth
     : false;
 
+  const handleMouseEnter = (item: T, event: React.MouseEvent) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    setHoverState({
+      isVisible: true,
+      item,
+      position: {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+      },
+    });
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setHoverState((prev) => ({ ...prev, isVisible: false }));
+    }, 100);
+  };
+
   return (
     <div className="carousel-container">
       {showArrows && canScrollLeft && (
@@ -74,22 +118,29 @@ export default function Carousel<T>({
         </button>
       )}
 
-      <div className="carousel" ref={carouselRef}>
-        {items.map((item) => {
-          const { src, alt, width = 200, height = 112 } = getImageProps(item);
-          const id = getId(item);
-          return (
-            <div
-              key={id}
-              className={`carousel-item w-${width} h-${height} ${
-                id === getId(selectedItem) ? "active" : ""
-              }`}
-              onClick={() => onItemSelect(item)}
-            >
-              <Image src={src} alt={alt} width={width} height={height} />
-            </div>
-          );
-        })}
+      <div className="carousel-wrapper">
+        <div className="carousel" ref={carouselRef}>
+          {items.map((item) => {
+            const { src, alt, width = 200, height = 112 } = getImageProps(item);
+            const id = getId(item);
+            return (
+              <div
+                key={id}
+                className={cn(
+                  "carousel-item",
+                  `w-${width}`,
+                  `h-${height}`,
+                  selectedItem && id === getId(selectedItem) && "active"
+                )}
+                onClick={() => onItemSelect(item)}
+                onMouseEnter={(e) => handleMouseEnter(item, e)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <Image src={src} alt={alt} width={width} height={height} />
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       {showArrows && canScrollRight && (
@@ -99,6 +150,21 @@ export default function Carousel<T>({
         >
           ›
         </button>
+      )}
+
+      {showHoverContent && hoverState.item && (
+        <HoverCard
+          {...getImageProps(hoverState.item)}
+          isVisible={hoverState.isVisible}
+          position={hoverState.position}
+          onMouseEnter={() => {
+            if (timeoutRef.current) {
+              clearTimeout(timeoutRef.current);
+            }
+          }}
+          onMouseLeave={handleMouseLeave}
+          meta={getMeta?.(hoverState.item)}
+        />
       )}
     </div>
   );

@@ -1,0 +1,115 @@
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.hover-card-portal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    animation: scaleIn 0.2s ease forwards;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+  }
+
+  .content {
+    @include flex(column, flex-start, flex-start, 0.5rem);
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    z-index: 2;
+
+    h3 {
+      color: white;
+      font-size: 0.9rem;
+    }
+
+    .description {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.8rem;
+      display: -webkit-box;
+      line-clamp: 3;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .meta {
+      display: flex;
+      gap: 0.5rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.8rem;
+      align-items: center;
+
+      .rating {
+        color: #ffd700; // Gold color for star rating
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+      }
+    }
+
+    .actions {
+      @include flex(row, center, center, 0.5rem);
+
+      button {
+        padding: 0.5rem 1.5rem;
+        border-radius: 4px;
+        border: none;
+        font-size: 0.8rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &.play {
+          background: white;
+          color: black;
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+        }
+
+        &.add {
+          background: rgba(255, 255, 255, 0.2);
+          color: white;
+        }
+      }
+    }
+  }
+}

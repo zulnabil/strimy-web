@@ -2,6 +2,7 @@
   padding: 2rem;
   padding-left: 96px;
   padding-bottom: 0.5rem;
+  position: relative;
 
   h2 {
     color: white;
@@ -13,17 +14,22 @@
   .carousel-container {
     width: 100%;
 
+    // Add a wrapper to handle overflow
+    .carousel-wrapper {
+      overflow: hidden;
+      position: relative;
+    }
+
     .carousel {
       max-width: 100%;
       padding: 0.5rem;
+      position: relative;
+      z-index: 1;
     }
 
     .carousel-item {
       opacity: 1;
-
-      &:hover {
-        transform: scale(1.05);
-      }
+      position: relative;
 
       &.active {
         border: none;

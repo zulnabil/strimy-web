@@ -3,19 +3,35 @@ import { pipe } from "~/app/common/lib/utils";
 import { config } from "~/app/common/constants/config";
 import { TopRatedMovie } from "../types/feature";
 import { MovieResponse } from "~/app/common/types/movie";
-import { getGenreNames } from "~/app/common/constants/genre";
+import {
+  getGenreNames,
+  getSeriesGenreNames,
+} from "~/app/common/constants/genre";
 
 const { IMAGE_BASE_URL } = config;
 
 const transformMovieData = (data: MovieResponse): TopRatedMovie[] =>
   data.results.map((movie) => ({
     id: movie.id,
-    title: movie.title || movie.name,
+    title: movie.title,
     overview: movie.overview,
     backdrop: `${IMAGE_BASE_URL}/original${movie.backdrop_path}`,
     poster: `${IMAGE_BASE_URL}/original${movie.poster_path}`,
     genres: getGenreNames(movie.genre_ids),
-    year: new Date(movie.release_date).getFullYear(),
+    year: movie.release_date ? new Date(movie.release_date).getFullYear() : 0,
+    rating: movie.vote_average,
+    language: movie.original_language.toUpperCase(),
+  }));
+
+const transformSeriesData = (data: MovieResponse): TopRatedMovie[] =>
+  data.results.map((movie) => ({
+    id: movie.id,
+    title: movie.name,
+    overview: movie.overview,
+    backdrop: `${IMAGE_BASE_URL}/original${movie.backdrop_path}`,
+    poster: `${IMAGE_BASE_URL}/original${movie.poster_path}`,
+    genres: getSeriesGenreNames(movie.genre_ids),
+    year: movie.release_date ? new Date(movie.release_date).getFullYear() : 0,
     rating: movie.vote_average,
     language: movie.original_language.toUpperCase(),
   }));
@@ -27,7 +43,7 @@ export const getTopRatedMovies = pipe(
 
 export const getTopRatedSeries = pipe(
   () => apiClient("/tv/top_rated"),
-  transformMovieData
+  transformSeriesData
 );
 
 export const getPopularMovies = pipe(
@@ -37,5 +53,5 @@ export const getPopularMovies = pipe(
 
 export const getPopularSeries = pipe(
   () => apiClient("/tv/popular"),
-  transformMovieData
+  transformSeriesData
 );

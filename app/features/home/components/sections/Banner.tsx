@@ -27,10 +27,9 @@ export default function Banner({ movies }: BannerProps) {
         <div className="banner__info">
           <h1>{selectedMovie.title}</h1>
           <div className="banner__meta">
-            <span className="year">{selectedMovie.year}</span>
-            <span className="rating">{selectedMovie.rating}+</span>
-            <span className="season">1 Season</span>
+            <span className="rating">★ {selectedMovie.rating.toFixed(1)}</span>
             <span className="language">{selectedMovie.language}</span>
+            <span className="year">{selectedMovie.year || ""}</span>
           </div>
           <p className="description">{selectedMovie.overview}</p>
           <div className="banner__genres">
@@ -58,6 +57,8 @@ export default function Banner({ movies }: BannerProps) {
           getImageProps={(movie) => ({
             src: movie.backdrop,
             alt: movie.title,
+            width: 200,
+            height: 112,
           })}
           getId={(movie) => movie.id}
         />

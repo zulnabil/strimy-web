@@ -51,12 +51,12 @@
     ul {
       @include flex(row, space-around, center, 0); // Mobile layout by default
 
+      height: 100%;
+      list-style: none;
+
       @include respond-to("tablet") {
         @include flex(column, center, center, 1rem); // Desktop layout
       }
-
-      height: 100%;
-      list-style: none;
 
       li {
         position: relative;

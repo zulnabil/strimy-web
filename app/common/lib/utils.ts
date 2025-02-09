@@ -23,3 +23,24 @@ export const parallel = <T extends Record<string, Promise<any>>>(
 export const randomize = <T>(array: T[]): T[] => {
   return array.sort(() => Math.random() - 0.5);
 };
+
+export const cn = (...classes: (string | boolean | undefined | null)[]) => {
+  return classes.filter(Boolean).join(" ");
+};
+
+export const debounce = <T extends (...args: any[]) => any>(
+  func: T,
+  wait: number
+) => {
+  let timeout: NodeJS.Timeout;
+
+  return function executedFunction(...args: Parameters<T>) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};

@@ -8,7 +8,6 @@ $card-width: 200px;
 
   .carousel-arrow {
     @include flex(row, center, center);
-
     position: absolute;
     width: 40px;
     height: calc(100% - 1rem);
@@ -36,9 +35,11 @@ $card-width: 200px;
         rgba(0, 0, 0, 0.8) 100%
       );
     }
+  }
 
-    &:hover {
-      background: rgba(0, 0, 0, 0.5);
+  &:hover {
+    .carousel-arrow {
+      opacity: 1;
     }
   }
 
@@ -64,17 +65,8 @@ $card-width: 200px;
       }
 
       &:hover {
-        opacity: 1;
         transform: scale(1.05);
-      }
-
-      &.active {
         opacity: 1;
-        border: 2px solid white;
-
-        &::after {
-          background: rgba(0, 0, 0, 0);
-        }
       }
     }
   }

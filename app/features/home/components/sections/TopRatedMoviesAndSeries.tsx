@@ -24,7 +24,15 @@ export default function TopRatedMoviesAndSeries({
           width: 164,
           height: 218,
         })}
+        getMeta={(movie) => ({
+          title: movie.title,
+          overview: movie.overview,
+          year: movie.year,
+          rating: movie.rating,
+          language: movie.language,
+        })}
         getId={(movie) => movie.id}
+        showHoverContent={true}
       />
     </section>
   );
