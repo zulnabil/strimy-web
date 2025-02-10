@@ -7,7 +7,7 @@ import "./page.scss";
 export default async function TVSeriesPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
   try {

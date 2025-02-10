@@ -7,7 +7,7 @@ import "./page.scss";
 export default async function MoviePage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   try {
     const { id } = await params;
