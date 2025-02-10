@@ -4,9 +4,12 @@ import Image from "next/image";
 import { TopRatedMovie } from "../../types/feature";
 import Carousel from "~/app/common/components/Carousel";
 import "../styles/Banner.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getDetailLink } from "~/app/common/lib/utils";
 import Link from "next/link";
+import { isInWatchlist, toggleWatchlist } from "~/app/common/lib/watchlist";
+import { cn } from "~/app/common/lib/utils";
+import ActionButton from "../ActionButton";
 
 interface BannerProps {
   movies: TopRatedMovie[];
@@ -14,6 +17,7 @@ interface BannerProps {
 
 export default function Banner({ movies }: BannerProps) {
   const [selectedMovie, setSelectedMovie] = useState(movies[0]);
+
   return (
     <div className="banner">
       <div className="banner__image">
@@ -42,14 +46,7 @@ export default function Banner({ movies }: BannerProps) {
             ))}
           </div>
 
-          <div className="banner__actions">
-            <button className="play-btn">
-              <Link href={getDetailLink(selectedMovie.type, selectedMovie.id)}>
-                <span>▶</span> Watch Now
-              </Link>
-            </button>
-            <button className="add-btn">+</button>
-          </div>
+          <ActionButton id={selectedMovie.id} type={selectedMovie.type} />
         </div>
       </div>
 

@@ -6,6 +6,7 @@ import CastSection from "./CastSection";
 import RecommendationsSection from "./RecommendationsSection";
 import "./styles/MovieDetail.scss";
 import { formatDate } from "~/app/common/lib/utils";
+import ActionButton from "~/app/features/home/components/ActionButton";
 
 interface MovieDetailProps {
   movie: MovieDetail;
@@ -50,14 +51,7 @@ export default function MovieDetail({ movie }: MovieDetailProps) {
 
             <p className="overview">{movie.overview}</p>
 
-            <div className="actions">
-              <button className="play-btn">
-                <span>▶</span> Watch Now
-              </button>
-              <button className="add-btn" title="Add to Watchlist">
-                +
-              </button>
-            </div>
+            <ActionButton id={movie.id} type="movie" />
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import type { Season, TVSeriesDetail } from "../types/feature";
 import SeasonSection from "./SeasonSection";
 import { formatDate } from "~/app/common/lib/utils";
 import "./styles/TVSeriesDetail.scss";
+import ActionButton from "~/app/features/home/components/ActionButton";
 
 interface TVSeriesDetailProps {
   series: TVSeriesDetail;
@@ -52,14 +53,7 @@ export default function TVSeriesDetail({ series }: TVSeriesDetailProps) {
 
             <p className="overview">{series.overview}</p>
 
-            <div className="actions">
-              <button className="play-btn">
-                <span>▶</span> Watch Now
-              </button>
-              <button className="add-btn" title="Add to Watchlist">
-                +
-              </button>
-            </div>
+            <ActionButton id={series.id} type="tv" />
           </div>
         </div>
       </div>

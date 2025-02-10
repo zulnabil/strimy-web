@@ -21,7 +21,7 @@ export default function ExploreContent({
       {searchQuery ? (
         <SearchResult query={searchQuery} />
       ) : (
-        <PopularSearches popularMoviesAndSeries={popularMoviesAndSeries} />
+        <PopularSearches items={popularMoviesAndSeries} />
       )}
     </div>
   );

@@ -1,0 +1,83 @@
+.watchlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+
+  @include respond-to("tablet") {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.empty-watchlist {
+  @include flex(column, center, center, 1rem);
+  min-height: 60vh;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  p {
+    max-width: 400px;
+    line-height: 1.6;
+  }
+}
+
+.watchlist-actions {
+  @include flex(row, center, center, 1rem);
+
+  margin-bottom: 2rem;
+
+  .search-bar {
+    margin-bottom: 0;
+    width: 100%;
+  }
+}
+
+button {
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+
+  &.select-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  &.remove-btn {
+    background: #dc2626;
+    color: white;
+    flex-shrink: 0;
+
+    &:hover {
+      background: #b91c1c;
+    }
+  }
+}
+
+.card-wrapper {
+  position: relative;
+
+  .selection-checkbox {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+}

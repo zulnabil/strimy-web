@@ -191,6 +191,11 @@
         @include respond-to("tablet") {
           padding: 0.5rem 1.2rem;
         }
+
+        &.in-list {
+          background: rgba(255, 255, 255, 0.9);
+          color: theme-aware("primary");
+        }
       }
     }
   }
