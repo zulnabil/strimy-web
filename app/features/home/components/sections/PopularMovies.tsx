@@ -29,6 +29,8 @@ export default function PopularMovies({ movies }: PopularMoviesProps) {
           year: movie.year,
           rating: movie.rating,
           language: movie.language,
+          type: movie.type,
+          id: movie.id,
         })}
         getId={(movie) => movie.id}
         showHoverContent={true}

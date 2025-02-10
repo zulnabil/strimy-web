@@ -3,11 +3,12 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
-import "./styles/HoverCard.scss";
-import { cn } from "~/app/common/lib/utils";
-import { TopRatedMovie } from "~/app/features/home/types/feature";
+import { cn, getDetailLink } from "~/app/common/lib/utils";
+import { TopRatedMovie } from "../types/feature";
+import "./styles/MovieHoverCard.scss";
+import Link from "next/link";
 
-interface HoverCardProps {
+interface MovieHoverCardProps {
   src: string;
   alt: string;
   width: number;
@@ -16,13 +17,13 @@ interface HoverCardProps {
   position: { x: number; y: number };
   onMouseEnter: () => void;
   onMouseLeave: () => void;
-  meta?: Pick<
+  meta: Pick<
     TopRatedMovie,
-    "title" | "overview" | "year" | "rating" | "language"
+    "title" | "overview" | "year" | "rating" | "language" | "type" | "id"
   >;
 }
 
-export default function HoverCard({
+export default function MovieHoverCard({
   src,
   alt,
   width,
@@ -32,13 +33,11 @@ export default function HoverCard({
   position,
   onMouseEnter,
   onMouseLeave,
-}: HoverCardProps) {
+}: MovieHoverCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!cardRef.current || !isVisible) return;
-
-    const rect = cardRef.current.getBoundingClientRect();
     cardRef.current.style.left = `${position.x}px`;
     cardRef.current.style.top = `${position.y}px`;
   }, [isVisible, position]);
@@ -48,7 +47,7 @@ export default function HoverCard({
   return createPortal(
     <div
       ref={cardRef}
-      className={cn("hover-card-portal", isVisible && "visible")}
+      className={cn("movie-hover-card", isVisible && "visible")}
       style={{
         width: width * 1.5,
         height: height * 1.5,
@@ -61,7 +60,9 @@ export default function HoverCard({
       <div className="content">
         <div className="actions">
           <button className="play">
-            <span>▶</span> Watch Now
+            <Link href={getDetailLink(meta?.type, meta?.id)}>
+              <span>▶</span> Watch Now
+            </Link>
           </button>
           <button className="add" title="Watchlist">
             +

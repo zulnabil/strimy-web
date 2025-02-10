@@ -4,8 +4,8 @@ import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import "./styles/Carousel.scss";
 import { cn } from "~/app/common/lib/utils";
-import HoverCard from "./HoverCard";
 import { TopRatedMovie } from "~/app/features/home/types/feature";
+import MovieHoverCard from "~/app/features/home/components/MovieHoverCard";
 
 interface CarouselProps<T> {
   items: T[];
@@ -20,7 +20,7 @@ interface CarouselProps<T> {
     item: T
   ) => Pick<
     TopRatedMovie,
-    "title" | "overview" | "year" | "rating" | "language"
+    "title" | "overview" | "year" | "rating" | "language" | "type" | "id"
   >;
   getId: (item: T) => number | string;
   selectedItem?: T;
@@ -152,8 +152,8 @@ export default function Carousel<T>({
         </button>
       )}
 
-      {showHoverContent && hoverState.item && (
-        <HoverCard
+      {showHoverContent && hoverState.item && getMeta && (
+        <MovieHoverCard
           {...getImageProps(hoverState.item)}
           isVisible={hoverState.isVisible}
           position={hoverState.position}
@@ -163,7 +163,7 @@ export default function Carousel<T>({
             }
           }}
           onMouseLeave={handleMouseLeave}
-          meta={getMeta?.(hoverState.item)}
+          meta={getMeta(hoverState.item)}
         />
       )}
     </div>

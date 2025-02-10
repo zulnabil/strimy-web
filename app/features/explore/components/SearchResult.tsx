@@ -4,6 +4,8 @@ import Image from "next/image";
 import "./styles/PopularSearches.scss";
 import { useSearch } from "../hooks/useSearch";
 import { SearchMovieAndSeries } from "../types/feature";
+import Link from "next/link";
+import { getDetailLink } from "~/app/common/lib/utils";
 
 type SearchResultProps = {
   query: string;
@@ -23,7 +25,11 @@ function ResultSection({
       <h2>{title}</h2>
       <div className="search-grid">
         {items.map((item) => (
-          <div key={item.id} className="search-item">
+          <Link
+            key={item.id}
+            href={getDetailLink(item.type, item.id)}
+            className="search-item"
+          >
             <div className="image-wrapper">
               <Image
                 src={item.poster}
@@ -36,7 +42,7 @@ function ResultSection({
                 <span className="overview">{item.overview}</span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

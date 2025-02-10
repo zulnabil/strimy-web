@@ -7,4 +7,5 @@ export type TopRatedMovie = Pick<MovieRaw, "id" | "title" | "overview"> & {
   year: number;
   rating: number;
   language: string;
+  type: "movie" | "tv";
 };

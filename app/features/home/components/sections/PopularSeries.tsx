@@ -28,6 +28,8 @@ export default function PopularSeries({ movies }: PopularSeriesProps) {
           year: movie.year,
           rating: movie.rating,
           language: movie.language,
+          type: movie.type,
+          id: movie.id,
         })}
         getId={(movie) => movie.id}
         showHoverContent={true}

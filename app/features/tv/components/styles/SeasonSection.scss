@@ -1,0 +1,177 @@
+.season-section {
+  margin-bottom: 3rem;
+
+  .season-tabs {
+    @include flex(row, flex-start, center, 0);
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+    }
+
+    .season-tab {
+      background: none;
+      border: none;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: white;
+      }
+
+      &.active {
+        color: white;
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -0.5rem;
+          left: 1rem;
+          right: 1rem;
+          height: 2px;
+          background: white;
+          border-radius: 1px;
+        }
+      }
+    }
+  }
+
+  .season-content {
+    .season-info {
+      @include flex(column, flex-start, flex-start, 1.5rem);
+      margin-bottom: 2rem;
+
+      @include respond-to("tablet") {
+        flex-direction: row;
+      }
+
+      .poster {
+        border-radius: 8px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .details {
+        color: white;
+
+        h3 {
+          font-size: 1.5rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+        }
+
+        .meta {
+          @include flex(row, flex-start, center, 1rem);
+          color: rgba(255, 255, 255, 0.8);
+          margin-bottom: 1rem;
+
+          span {
+            position: relative;
+
+            &:not(:last-child)::after {
+              content: "•";
+              position: absolute;
+              right: -0.8rem;
+            }
+          }
+        }
+
+        .overview {
+          color: rgba(255, 255, 255, 0.9);
+          line-height: 1.6;
+        }
+      }
+    }
+
+    .episodes-list {
+      @include flex(column, flex-start, stretch, 1rem);
+
+      .episode-card {
+        @include flex(column, flex-start, stretch, 1rem);
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.2s ease;
+
+        @include respond-to("tablet") {
+          flex-direction: row;
+        }
+
+        &:hover {
+          transform: scale(1.01);
+        }
+
+        .image-wrapper {
+          position: relative;
+          width: 100%;
+          aspect-ratio: 16/9;
+
+          @include respond-to("tablet") {
+            width: 300px;
+            flex-shrink: 0;
+          }
+
+          img {
+            object-fit: cover;
+          }
+        }
+
+        .info {
+          padding: 1rem;
+          color: white;
+          width: 100%;
+
+          .header {
+            margin-bottom: 0.5rem;
+
+            h4 {
+              font-size: 1.1rem;
+              font-weight: 600;
+              margin-bottom: 0.25rem;
+            }
+
+            .meta {
+              @include flex(row, flex-start, center, 1rem);
+              color: rgba(255, 255, 255, 0.7);
+              font-size: 0.9rem;
+
+              span {
+                position: relative;
+
+                &:not(:last-child)::after {
+                  content: "•";
+                  position: absolute;
+                  right: -0.8rem;
+                }
+              }
+            }
+          }
+
+          .overview {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.5;
+          }
+        }
+      }
+    }
+  }
+}

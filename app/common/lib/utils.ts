@@ -52,3 +52,7 @@ export const formatDate = (date: string) => {
     year: "numeric",
   });
 };
+
+export const getDetailLink = (type: "movie" | "tv", id: number) => {
+  return `/${type}/${id}`;
+};

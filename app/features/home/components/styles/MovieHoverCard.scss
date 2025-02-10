@@ -1,0 +1,111 @@
+.movie-hover-card {
+  position: fixed;
+  z-index: 100;
+  border-radius: 8px;
+  overflow: hidden;
+  transform: translate(-50%, -50%) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  background: theme-aware("primary");
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+  &.visible {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  .content {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.6) 50%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+    padding: 1rem;
+    @include flex(column, flex-end, flex-start, 0.5rem);
+    color: white;
+
+    .actions {
+      @include flex(row, flex-start, center, 0.5rem);
+      margin-bottom: 0.5rem;
+
+      button {
+        cursor: pointer;
+        border: none;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+
+        &.play {
+          @include flex(row, center, center, 0.5rem);
+          background: white;
+          color: black;
+          padding: 0.5rem 1rem;
+          font-weight: 600;
+
+          a {
+            @include flex(row, center, center, 0.5rem);
+            text-decoration: none;
+            color: black;
+          }
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.9);
+          }
+        }
+
+        &.add {
+          background: rgba(255, 255, 255, 0.2);
+          color: white;
+          width: 32px;
+          height: 32px;
+          font-size: 1.2rem;
+          line-height: 1;
+
+          &:hover {
+            background: rgba(255, 255, 255, 0.3);
+          }
+        }
+      }
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .meta {
+      @include flex(row, flex-start, center, 0.75rem);
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+
+      span {
+        position: relative;
+
+        &:not(:last-child)::after {
+          content: "•";
+          position: absolute;
+          right: -0.5rem;
+        }
+      }
+    }
+
+    .description {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.7);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  }
+}

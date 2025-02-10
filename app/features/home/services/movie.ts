@@ -21,6 +21,7 @@ const transformMovieData = (data: MovieResponse): TopRatedMovie[] =>
     year: movie.release_date ? new Date(movie.release_date).getFullYear() : 0,
     rating: movie.vote_average,
     language: movie.original_language.toUpperCase(),
+    type: "movie",
   }));
 
 const transformSeriesData = (data: MovieResponse): TopRatedMovie[] =>
@@ -34,6 +35,7 @@ const transformSeriesData = (data: MovieResponse): TopRatedMovie[] =>
     year: new Date(movie.release_date || movie.first_air_date).getFullYear(),
     rating: movie.vote_average,
     language: movie.original_language.toUpperCase(),
+    type: "tv",
   }));
 
 export const getTopRatedMovies = pipe(

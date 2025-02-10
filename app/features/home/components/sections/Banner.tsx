@@ -5,6 +5,8 @@ import { TopRatedMovie } from "../../types/feature";
 import Carousel from "~/app/common/components/Carousel";
 import "../styles/Banner.scss";
 import { useState } from "react";
+import { getDetailLink } from "~/app/common/lib/utils";
+import Link from "next/link";
 
 interface BannerProps {
   movies: TopRatedMovie[];
@@ -42,7 +44,9 @@ export default function Banner({ movies }: BannerProps) {
 
           <div className="banner__actions">
             <button className="play-btn">
-              <span>▶</span> Watch Now
+              <Link href={getDetailLink(selectedMovie.type, selectedMovie.id)}>
+                <span>▶</span> Watch Now
+              </Link>
             </button>
             <button className="add-btn">+</button>
           </div>

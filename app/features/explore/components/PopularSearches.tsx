@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import "./styles/PopularSearches.scss";
 import { TopRatedMovie } from "~/app/features/home/types/feature";
+import { getDetailLink } from "~/app/common/lib/utils";
 
 type PopularSearchesProps = {
   popularMoviesAndSeries: TopRatedMovie[];
@@ -19,7 +20,7 @@ export default function PopularSearches({
         {popularMoviesAndSeries.map((item) => (
           <Link
             key={item.id}
-            href={`/movie/${item.id}`}
+            href={getDetailLink(item.type, item.id)}
             className="search-item"
           >
             <div className="image-wrapper">

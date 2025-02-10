@@ -166,10 +166,17 @@
 
       &.play-btn {
         @include flex(row, center, center, 0.5rem);
+
         min-width: 160px;
 
         @include respond-to("tablet") {
           min-width: 200px;
+        }
+
+        a {
+          @include flex(row, center, center, 0.5rem);
+          text-decoration: none;
+          color: white;
         }
 
         span {
