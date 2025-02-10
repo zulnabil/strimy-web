@@ -4,11 +4,7 @@ import Image from "next/image";
 import { TopRatedMovie } from "../../types/feature";
 import Carousel from "~/app/common/components/Carousel";
 import "../styles/Banner.scss";
-import { useState, useEffect } from "react";
-import { getDetailLink } from "~/app/common/lib/utils";
-import Link from "next/link";
-import { isInWatchlist, toggleWatchlist } from "~/app/common/lib/watchlist";
-import { cn } from "~/app/common/lib/utils";
+import { useState } from "react";
 import ActionButton from "../ActionButton";
 
 interface BannerProps {

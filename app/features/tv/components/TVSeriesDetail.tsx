@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import type { Season, TVSeriesDetail } from "../types/feature";
+import type { TVSeriesDetail } from "../types/feature";
 import SeasonSection from "./SeasonSection";
 import { formatDate } from "~/app/common/lib/utils";
 import "./styles/TVSeriesDetail.scss";

@@ -2,19 +2,6 @@ import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import MovieHoverCard from "../MovieHoverCard";
 
-const mockMovie = {
-  id: 1,
-  title: "Test Movie",
-  overview: "Test overview",
-  poster: "/test.jpg",
-  backdrop: "/backdrop.jpg",
-  rating: 8.5,
-  year: "2024",
-  language: "EN",
-  genres: ["Action", "Drama"],
-  type: "movie" as const,
-};
-
 describe("MovieHoverCard", () => {
   const mockProps = {
     src: "/test.jpg",

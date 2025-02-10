@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export const pipe =
   <T>(...functions: Array<(arg: any) => T | Promise<T>>) =>
   async (initialValue?: any): Promise<T> =>

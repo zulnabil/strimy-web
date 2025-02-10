@@ -71,7 +71,7 @@ export default function SearchResult({ query }: SearchResultProps) {
   if (!results.length) {
     return (
       <div className="popular-searches">
-        <h2>No results found for "{query}"</h2>
+        <h2>No results found for &quot;{query}&quot;</h2>
       </div>
     );
   }

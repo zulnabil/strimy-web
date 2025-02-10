@@ -17,7 +17,7 @@ export default async function TVSeriesPage({
         <TVSeriesDetail series={series} />
       </main>
     );
-  } catch (error) {
+  } catch {
     notFound();
   }
 }

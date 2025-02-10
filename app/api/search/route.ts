@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   try {
     const results = await searchMoviesAndSeries(query);
     return Response.json(results);
-  } catch (error) {
+  } catch {
     return Response.json(
       { error: "Failed to fetch search results" },
       { status: 500 }

@@ -17,7 +17,7 @@ export default async function MoviePage({
         <MovieDetail movie={movie} />
       </main>
     );
-  } catch (error) {
+  } catch {
     notFound();
   }
 }
