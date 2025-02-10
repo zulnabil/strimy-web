@@ -167,4 +167,25 @@
       padding-left: 96px;
     }
   }
+
+  .back-button {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+
+    @include respond-to("tablet") {
+      padding: 0.8rem 2rem;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
 }

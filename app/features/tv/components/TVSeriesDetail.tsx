@@ -7,6 +7,7 @@ import SeasonSection from "./SeasonSection";
 import { formatDate } from "~/app/common/lib/utils";
 import "./styles/TVSeriesDetail.scss";
 import ActionButton from "~/app/features/home/components/ActionButton";
+import { useRouter } from "next/navigation";
 
 interface TVSeriesDetailProps {
   series: TVSeriesDetail;
@@ -14,6 +15,7 @@ interface TVSeriesDetailProps {
 
 export default function TVSeriesDetail({ series }: TVSeriesDetailProps) {
   const [selectedSeason, setSelectedSeason] = useState(series.seasons?.[0]);
+  const router = useRouter();
 
   return (
     <div className="tv-detail">
@@ -21,6 +23,10 @@ export default function TVSeriesDetail({ series }: TVSeriesDetailProps) {
         <div className="backdrop">
           <Image src={series.backdrop} alt={series.title} fill priority />
         </div>
+
+        <button className="back-button" onClick={() => router.back()}>
+          ← Back
+        </button>
 
         <div className="content">
           <div className="poster">

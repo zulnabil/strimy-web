@@ -7,18 +7,25 @@ import RecommendationsSection from "./RecommendationsSection";
 import "./styles/MovieDetail.scss";
 import { formatDate } from "~/app/common/lib/utils";
 import ActionButton from "~/app/features/home/components/ActionButton";
+import { useRouter } from "next/navigation";
 
 interface MovieDetailProps {
   movie: MovieDetail;
 }
 
 export default function MovieDetail({ movie }: MovieDetailProps) {
+  const router = useRouter();
+
   return (
     <div className="movie-detail">
       <div className="movie-detail__hero">
         <div className="backdrop">
           <Image src={movie.backdrop} alt={movie.title} fill priority />
         </div>
+
+        <button className="back-button" onClick={() => router.back()}>
+          ← Back
+        </button>
 
         <div className="content">
           <div className="poster">
