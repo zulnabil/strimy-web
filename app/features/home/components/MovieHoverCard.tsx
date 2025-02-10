@@ -1,13 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
-import { cn, getDetailLink } from "~/app/common/lib/utils";
-import { isInWatchlist, toggleWatchlist } from "~/app/common/lib/watchlist";
+import { cn } from "~/app/common/lib/utils";
 import { TopRatedMovie } from "../types/feature";
 import "./styles/MovieHoverCard.scss";
-import Link from "next/link";
 import ActionButton from "./ActionButton";
 
 interface MovieHoverCardProps {
@@ -37,24 +35,12 @@ export default function MovieHoverCard({
   onMouseLeave,
 }: MovieHoverCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [isInList, setIsInList] = useState(false);
 
   useEffect(() => {
     if (!cardRef.current || !isVisible) return;
     cardRef.current.style.left = `${position.x}px`;
     cardRef.current.style.top = `${position.y}px`;
   }, [isVisible, position]);
-
-  useEffect(() => {
-    if (!meta) return;
-    setIsInList(isInWatchlist(meta.id));
-  }, [meta]);
-
-  const handleWatchlistClick = () => {
-    if (!meta) return;
-    const added = toggleWatchlist(meta.id);
-    setIsInList(added);
-  };
 
   if (!isVisible) return null;
 
