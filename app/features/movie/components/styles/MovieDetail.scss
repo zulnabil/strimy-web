@@ -1,0 +1,222 @@
+.movie-detail {
+  min-height: 100vh;
+  background: theme-aware("primary");
+
+  &__hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 1rem;
+
+    @include respond-to("tablet") {
+      min-height: 80vh;
+      padding: 2rem;
+      padding-left: 96px;
+    }
+
+    .backdrop {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.4) 0%,
+          rgba(0, 0, 0, 0.9) 60%,
+          rgba(0, 0, 0, 1) 100%
+        );
+
+        @include respond-to("tablet") {
+          background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0.4) 50%,
+            rgba(0, 0, 0, 0.2) 100%
+          );
+        }
+      }
+
+      img {
+        object-fit: cover;
+      }
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      @include flex(column, flex-end, center, 1.5rem);
+      min-height: 100vh;
+      padding-bottom: 2rem;
+
+      @include respond-to("tablet") {
+        min-height: unset;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 2rem;
+        margin-top: 2rem;
+        padding-bottom: 0;
+      }
+
+      .poster {
+        width: 70%;
+        max-width: 300px;
+        border-radius: 8px;
+        overflow: hidden;
+        flex-shrink: 0;
+
+        @include respond-to("tablet") {
+          width: 300px;
+        }
+      }
+
+      .info {
+        @include flex(column, flex-start, flex-start, 1rem);
+        color: white;
+        width: 100%;
+        text-align: center;
+
+        @include respond-to("tablet") {
+          text-align: left;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+          font-weight: 700;
+
+          @include respond-to("tablet") {
+            font-size: 3rem;
+          }
+        }
+
+        .tagline {
+          font-size: 1rem;
+          color: rgba(255, 255, 255, 0.8);
+          font-style: italic;
+
+          @include respond-to("tablet") {
+            font-size: 1.2rem;
+          }
+        }
+
+        .meta {
+          @include flex(row, center, center, 1rem);
+          flex-wrap: wrap;
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.9rem;
+
+          @include respond-to("tablet") {
+            justify-content: flex-start;
+            font-size: 1rem;
+          }
+
+          span {
+            position: relative;
+
+            &:not(:last-child)::after {
+              content: "•";
+              position: absolute;
+              right: -0.8rem;
+            }
+          }
+        }
+
+        .genres {
+          @include flex(row, center, center, 0.5rem);
+          flex-wrap: wrap;
+
+          @include respond-to("tablet") {
+            justify-content: flex-start;
+          }
+
+          .genre {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+
+            @include respond-to("tablet") {
+              font-size: 0.9rem;
+            }
+          }
+        }
+
+        .overview {
+          max-width: 800px;
+          line-height: 1.6;
+          color: rgba(255, 255, 255, 0.9);
+          font-size: 0.9rem;
+
+          @include respond-to("tablet") {
+            font-size: 1rem;
+          }
+        }
+
+        .actions {
+          @include flex(row, center, center, 1rem);
+          margin-top: 1rem;
+
+          @include respond-to("tablet") {
+            justify-content: flex-start;
+          }
+
+          button {
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            padding: 0.8rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+
+            @include respond-to("tablet") {
+              padding: 0.8rem 2rem;
+            }
+
+            &.play-btn {
+              @include flex(row, center, center, 0.5rem);
+              background: white;
+              color: black;
+              min-width: 140px;
+
+              @include respond-to("tablet") {
+                min-width: 160px;
+              }
+
+              span {
+                font-size: 1.2rem;
+              }
+
+              &:hover {
+                background: rgba(255, 255, 255, 0.9);
+              }
+            }
+
+            &.add-btn {
+              background: rgba(255, 255, 255, 0.2);
+              color: white;
+              font-size: 1.2rem;
+              padding: 0.8rem 1.2rem;
+
+              &:hover {
+                background: rgba(255, 255, 255, 0.3);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__content {
+    padding: 1rem;
+
+    @include respond-to("tablet") {
+      padding: 2rem;
+      padding-left: 96px;
+    }
+  }
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import "./styles/PopularSearches.scss";
 import { TopRatedMovie } from "~/app/features/home/types/feature";
 
@@ -16,7 +17,11 @@ export default function PopularSearches({
       <h2>Popular Searches</h2>
       <div className="search-grid">
         {popularMoviesAndSeries.map((item) => (
-          <div key={item.id} className="search-item">
+          <Link
+            key={item.id}
+            href={`/movie/${item.id}`}
+            className="search-item"
+          >
             <div className="image-wrapper">
               <Image
                 src={item.poster}
@@ -30,7 +35,7 @@ export default function PopularSearches({
                 <span className="overview">{item.overview}</span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

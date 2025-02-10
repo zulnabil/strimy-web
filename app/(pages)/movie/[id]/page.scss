@@ -1,0 +1,5 @@
+.movie-page {
+  background-color: map.get($themes, "dark", "primary");
+  color: white;
+  min-height: 100svh;
+}

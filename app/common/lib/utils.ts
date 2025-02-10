@@ -44,3 +44,11 @@ export const debounce = <T extends (...args: any[]) => any>(
     timeout = setTimeout(later, wait);
   };
 };
+
+export const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+};

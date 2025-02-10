@@ -1,0 +1,62 @@
+.cast-section {
+  h2 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  .cast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+
+    @include respond-to("tablet") {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1.5rem;
+    }
+  }
+
+  .cast-card {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+
+      .info {
+        color: white;
+      }
+    }
+
+    .image-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2/3;
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1);
+      margin-bottom: 0.5rem;
+
+      img {
+        object-fit: cover;
+      }
+    }
+
+    .info {
+      @include flex(column, flex-start, flex-start, 0.25rem);
+      color: rgba(255, 255, 255, 0.8);
+      transition: color 0.2s ease;
+
+      .name {
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .character {
+        font-size: 0.8rem;
+        opacity: 0.8;
+      }
+    }
+  }
+}
