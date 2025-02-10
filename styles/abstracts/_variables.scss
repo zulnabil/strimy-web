@@ -8,7 +8,23 @@ $themes: (
     accent: #0063e5,
     hover: #0483ee,
     card-bg: rgba(0, 0, 0, 0.75),
-    overlay: rgba(0, 0, 0, 0.6)
+    overlay: rgba(0, 0, 0, 0.6),
+    overlay-light: rgba(255, 255, 255, 0.1),
+    overlay-medium: rgba(255, 255, 255, 0.2),
+    overlay-heavy: rgba(255, 255, 255, 0.5),
+    danger: #dc2626,
+    danger-dark: #b91c1c,
+    background: #1a1d29,
+    text-white: #ffffff,
+    input-background: rgba(255, 255, 255, 0.1),
+    input-text: #ffffff,
+    input-placeholder: rgba(255, 255, 255, 0.5),
+    button-hover: rgba(255, 255, 255, 0.3),
+    card-background: rgba(255, 255, 255, 0.1),
+    gradient-overlay:
+      linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%),
+    meta-text: #ffffff,
+    meta-text-secondary: rgba(255, 255, 255, 0.8),
   ),
   light: (
     primary: #ffffff,
@@ -18,8 +34,24 @@ $themes: (
     accent: #0063e5,
     hover: #0483ee,
     card-bg: rgba(249, 249, 249, 0.9),
-    overlay: rgba(0, 0, 0, 0.4)
-  )
+    overlay: rgba(0, 0, 0, 0.4),
+    overlay-light: rgba(0, 0, 0, 0.1),
+    overlay-medium: rgba(0, 0, 0, 0.2),
+    overlay-heavy: rgba(0, 0, 0, 0.5),
+    danger: #dc2626,
+    danger-dark: #b91c1c,
+    background: #ffffff,
+    text-white: #ffffff,
+    input-background: rgba(0, 0, 0, 0.1),
+    input-text: #000000,
+    input-placeholder: rgba(0, 0, 0, 0.5),
+    button-hover: rgba(0, 0, 0, 0.3),
+    card-background: rgba(0, 0, 0, 0.1),
+    gradient-overlay:
+      linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 70%),
+    meta-text: #ffffff,
+    meta-text-secondary: rgba(255, 255, 255, 0.8),
+  ),
 );
 
 // Breakpoints
@@ -27,7 +59,7 @@ $breakpoints: (
   mobile: 320px,
   tablet: 768px,
   desktop: 1024px,
-  large: 1440px
+  large: 1440px,
 );
 
 // Z-index layers
@@ -36,7 +68,7 @@ $z-layers: (
   overlay: 900,
   dropdown: 800,
   header: 700,
-  footer: 600
+  footer: 600,
 );
 
 // Typography
@@ -44,30 +76,43 @@ $font-weights: (
   regular: 400,
   medium: 500,
   semibold: 600,
-  bold: 700
+  bold: 700,
 );
 
 $font-sizes: (
-  xs: 0.75rem,    // 12px
-  sm: 0.875rem,   // 14px
-  base: 1rem,     // 16px
-  lg: 1.125rem,   // 18px
-  xl: 1.25rem,    // 20px
-  '2xl': 1.5rem,  // 24px
-  '3xl': 1.875rem // 30px
+  xs: 0.75rem,
+  // 12px
+  sm: 0.875rem,
+  // 14px
+  base: 1rem,
+  // 16px
+  lg: 1.125rem,
+  // 18px
+  xl: 1.25rem,
+  // 20px
+  "2xl": 1.5rem,
+  // 24px
+  "3xl": 1.875rem // 30px,,,,,,,,
 );
 
 // Spacing
 $spacing: (
   0: 0,
-  1: 0.25rem,  // 4px
-  2: 0.5rem,   // 8px
-  3: 0.75rem,  // 12px
-  4: 1rem,     // 16px
-  5: 1.25rem,  // 20px
-  6: 1.5rem,   // 24px
-  8: 2rem,     // 32px
-  10: 2.5rem,  // 40px
-  12: 3rem     // 48px
+  1: 0.25rem,
+  // 4px
+  2: 0.5rem,
+  // 8px
+  3: 0.75rem,
+  // 12px
+  4: 1rem,
+  // 16px
+  5: 1.25rem,
+  // 20px
+  6: 1.5rem,
+  // 24px
+  8: 2rem,
+  // 32px
+  10: 2.5rem,
+  // 40px
+  12: 3rem // 48px,,,,,,,,
 );
-

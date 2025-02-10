@@ -11,15 +11,16 @@
 
 .empty-watchlist {
   @include flex(column, center, center, 1rem);
+  @include theme-aware("color", "text-secondary");
   min-height: 60vh;
   text-align: center;
-  color: rgba(255, 255, 255, 0.8);
   padding: 2rem;
 
   h2 {
+    @include theme-aware("color", "text-primary");
+
     font-size: 1.5rem;
     font-weight: 600;
-    color: white;
   }
 
   p {
@@ -49,21 +50,21 @@ button {
   font-size: 0.9rem;
 
   &.select-btn {
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
+    @include theme-aware("background", "overlay-light");
+    @include theme-aware("color", "text-primary");
 
     &:hover {
-      background: rgba(255, 255, 255, 0.2);
+      @include theme-aware("background", "overlay-medium");
     }
   }
 
   &.remove-btn {
-    background: #dc2626;
-    color: white;
+    @include theme-aware("background", "danger");
+    @include theme-aware("color", "text-primary");
     flex-shrink: 0;
 
     &:hover {
-      background: #b91c1c;
+      @include theme-aware("background", "danger-dark");
     }
   }
 }

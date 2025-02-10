@@ -8,8 +8,8 @@
   }
 
   button {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
+    @include theme-aware("background", "overlay-light");
+    @include theme-aware("color", "text-white");
     cursor: pointer;
     border: none;
     padding: 0.6rem 1.5rem;
@@ -22,12 +22,11 @@
     }
 
     &:hover {
-      background: rgba(255, 255, 255, 0.3);
+      @include theme-aware("background", "button-hover");
     }
 
     &.play-btn {
       @include flex(row, center, center, 0.5rem);
-
       min-width: 160px;
 
       @include respond-to("tablet") {
@@ -37,7 +36,7 @@
       a {
         @include flex(row, center, center, 0.5rem);
         text-decoration: none;
-        color: white;
+        @include theme-aware("color", "text-white");
       }
 
       span {
@@ -54,8 +53,8 @@
       }
 
       &.in-list {
-        background: rgba(255, 255, 255, 0.5);
-        color: theme-aware("primary");
+        @include theme-aware("background", "overlay-heavy");
+        @include theme-aware("color", "primary");
       }
     }
   }

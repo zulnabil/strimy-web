@@ -1,12 +1,12 @@
 .search-bar {
   @include flex(row, flex-start, center, 0.5rem);
-  background: rgba(255, 255, 255, 0.1);
+  @include theme-aware("background", "input-background");
   border-radius: 8px;
   padding: 0.75rem 1rem;
   margin-bottom: 2rem;
 
   .search-icon {
-    color: rgba(255, 255, 255, 0.5);
+    @include theme-aware("color", "input-placeholder");
     font-size: 1.2rem;
   }
 
@@ -14,12 +14,12 @@
     flex: 1;
     background: none;
     border: none;
-    color: white;
+    @include theme-aware("color", "input-text");
     font-size: 1rem;
     outline: none;
 
     &::placeholder {
-      color: rgba(255, 255, 255, 0.5);
+      @include theme-aware("color", "input-placeholder");
     }
   }
 }
