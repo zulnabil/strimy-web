@@ -21,7 +21,7 @@ export default function MediaCard({
   overview,
 }: MediaCardProps) {
   return (
-    <Link key={id} href={getDetailLink(type, id)} className="search-item">
+    <Link key={id} href={getDetailLink(type, id)} className="media-card">
       <div className="image-wrapper">
         <Image
           src={poster}
